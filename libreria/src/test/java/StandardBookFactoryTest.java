@@ -26,7 +26,7 @@ public class StandardBookFactoryTest {
     */
     @Test
     public void CreatingBook(){
-        Book test = factory.createBook("La leggenda di Drizzt", "987-654-33-22-11", "R.A Salvador", 1499);
+        Book test = factory.createBook("La leggenda di Drizzt", "987-654-33-22-11", "R.A Salvador", 1499,1990);
         assertEquals("La leggenda di Drizzt", test.getTitle());
         assertEquals("987-654-33-22-11",test.getISBN());
         assertEquals("R.A Salvador", test.getAuthor());
@@ -41,7 +41,7 @@ public class StandardBookFactoryTest {
     public void emptyTitle(){
        book_factory factory = new standard_book_factory();
        try{
-        factory.createBook("", "ISBN", "author", 1111);
+        factory.createBook("", "ISBN", "author", 1111,1950);
         fail("No input error launched");
        } catch(InputError e){
         assertEquals("Empty or invalid  title, please check again", e.getMessage());
@@ -56,7 +56,7 @@ public class StandardBookFactoryTest {
     public void emptyISBN(){
        book_factory factory = new standard_book_factory();
        try{
-        factory.createBook("title", "", "author", 1111);
+        factory.createBook("title", "", "author", 1111,1950);
         fail("No input error launched");
        } catch(InputError e){
         assertEquals("Empty or Invalid ISBN, pleas check again", e.getMessage());
@@ -72,7 +72,7 @@ public class StandardBookFactoryTest {
     public void emptyAuthor(){
        book_factory factory = new standard_book_factory();
        try{
-        factory.createBook("title", "ISBN", "", 1111);
+        factory.createBook("title", "ISBN", "", 1111,1950);
         fail("No input error launched");
        } catch(InputError e){
         assertEquals("Empty or Invalid authro,please chek again ", e.getMessage());
@@ -86,7 +86,19 @@ public class StandardBookFactoryTest {
     public void invalidPrice(){
        book_factory factory = new standard_book_factory();
        try{
-        factory.createBook("title", "ISBN", "author", -50);
+        factory.createBook("title", "ISBN", "author", -50,1950);
+        fail("No input error launched");
+       } catch(InputError e){
+        assertEquals("Please, insert a positive value ", e.getMessage());
+       }
+    }
+
+
+     @Test
+    public void invalidPublicationYear(){
+       book_factory factory = new standard_book_factory();
+       try{
+        factory.createBook("title", "ISBN", "author", 1111,-150);
         fail("No input error launched");
        } catch(InputError e){
         assertEquals("Please, insert a positive value ", e.getMessage());

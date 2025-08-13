@@ -12,7 +12,7 @@ public class standard_book_factory implements book_factory {
 
     private static final Logger logger = Logger.getLogger(standard_book_factory.class.getName());
 
-    public Book createBook(String title, String ISBN, String author, int price){
+    public Book createBook(String title, String ISBN, String author, int price, int publicationYear){
 
         if(title == null || title.isBlank()){
             logger.warning("Impossible to create the book for  title field problem.");
@@ -33,8 +33,13 @@ public class standard_book_factory implements book_factory {
             logger.warning("Impossible to create the book for price field problem ");
             throw new InputError("Please, insert a positive value ");
         }
+
+         if(publicationYear <= 0) {
+            logger.warning("Impossible to create the book for publicationYear field problem ");
+            throw new InputError("Please, insert a positive value ");
+        }
         logger.info("Book created succesfully");
-        return new AdventureBook(title.trim(), ISBN.trim(), author.trim(), price, false);
+        return new AdventureBook(title.trim(), ISBN.trim(), author.trim(), price,publicationYear, false);
 
 
     }

@@ -7,6 +7,7 @@ import giuseppecalvaruso.domain.Book;
 import giuseppecalvaruso.exception.InputError;
 import giuseppecalvaruso.factory_file.book_factory;
 import giuseppecalvaruso.factory_file.standard_book_factory;
+import giuseppecalvaruso.io.bookmanager;
 
 /**
  * In the main I'm going to create the book, asking to operator the fields of the book and inserting it in a file 
@@ -45,10 +46,14 @@ public class Main {
                 System.out.println("Price: ");
                 int price = Integer.parseInt(input.nextLine());
 
-                Book book = factory.createBook(title, ISBN, author, price);
+                System.out.println("Publication year: ");
+                int publicationYear  =Integer.parseInt(input.nextLine());
+
+                Book book = factory.createBook(title, ISBN, author, price,publicationYear);
                 System.out.println("Book created succesfully");
-                System.out.println("Title: " + book.getTitle() + "ISBN: " + book.getISBN() + "Author: " + book.getAuthor());
+                System.out.println("Title: " + book.getTitle() + "ISBN: " + book.getISBN() + "Author: " + book.getAuthor() + "Price: " + book.getPrice() + "Publication Year: " + book.getPublicationYear());
                 logger.info("The book was created succesfully");
+                bookmanager.saveBook(book);
 
             }
      
@@ -68,6 +73,7 @@ public class Main {
             catch(Exception error){
                 System.out.println("Generic error, please contact support");
                 logger.severe("Exception non handled, fix as soon as possible" + error.getMessage());
+                
 
             }
         }

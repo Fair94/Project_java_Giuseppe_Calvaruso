@@ -12,12 +12,14 @@ public class  AdventureBook implements Book {
     private final String ISBN;
     private final String author;
     private final int    price;
+    private final int publicationYear;
     private boolean rented; 
 
    
   
     /* This is the constructor for the book */
-    public AdventureBook(String title, String ISBN, String author, int price,boolean rented ){
+    public AdventureBook(String title, String ISBN, String author, int price,int publicationYear,boolean rented ){
+        this.publicationYear = publicationYear;
         this.title = title;
         this.ISBN = ISBN;
         this.author = author;
@@ -43,6 +45,9 @@ public class  AdventureBook implements Book {
         }
      public boolean isRented() {
         return rented;
+    }
+     public int getPublicationYear() {
+        return publicationYear;
     }
       public void setRented(boolean rented) {
         this.rented = rented;

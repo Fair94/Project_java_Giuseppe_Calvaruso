@@ -17,7 +17,9 @@ public interface  Book {
     String getAuthor();
     int getPrice();
     boolean isRented();
+    int getPublicationYear();
     void setRented(boolean rented);
+    
 
     
 }
