@@ -2,12 +2,8 @@ package giuseppecalvaruso;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
-
-import giuseppecalvaruso.domain.Book;
-import giuseppecalvaruso.exception.InputError;
-import giuseppecalvaruso.factory_file.book_factory;
-import giuseppecalvaruso.factory_file.standard_book_factory;
-import giuseppecalvaruso.io.bookmanager;
+import giuseppecalvaruso.menu.Facade;
+import giuseppecalvaruso.menu.Mainmenu;
 
 /**
  * In the main I'm going to create the book, asking to operator the fields of the book and inserting it in a file 
@@ -28,55 +24,40 @@ public class Main {
     
     public static void main(String[] args) {
         try (Scanner input = new Scanner(System.in)) {
-            book_factory factory = new standard_book_factory();
-            
-            System.out.println("Welcome to the library");
-            System.out.println("Please insert the requested field of the book");
+            Facade facade = new Facade(input);
 
-            try{
-                System.out.println("Title: ");
-                String title = input.nextLine();
+            while(true){
+                Mainmenu.Menu();
+                String userChoice = input.nextLine();
 
-                System.out.println("ISBN: ");
-                String ISBN = input.nextLine();
+                try{
+                    int parsedUserChoiche = Integer.parseInt(userChoice);
+                    Mainmenu selection = Mainmenu.number(parsedUserChoiche);
 
-                System.out.println("Author: ");
-                String author = input.nextLine();
+                    if(selection == null){
+                        System.out.println("Incorrect choice, try again");
+                        continue;
+                    }
 
-                System.out.println("Price: ");
-                int price = Integer.parseInt(input.nextLine());
-
-                System.out.println("Publication year: ");
-                int publicationYear  =Integer.parseInt(input.nextLine());
-
-                Book book = factory.createBook(title, ISBN, author, price,publicationYear);
-                System.out.println("Book created succesfully");
-                System.out.println("Title: " + book.getTitle() + "ISBN: " + book.getISBN() + "Author: " + book.getAuthor() + "Price: " + book.getPrice() + "Publication Year: " + book.getPublicationYear());
-                logger.info("The book was created succesfully");
-                bookmanager.saveBook(book);
-
-            }
-     
-
-            
-
-            catch (NumberFormatException error){
-                System.out.println("Please, insert a valid price for the book");
-                logger.warning("There's a problem in the number format, check testing with 0, number or negative number"+ error.getMessage());
-
-            }
-            catch (InputError error){
-
-                System.out.println("Error in book's field, try again");
-                logger.severe("Input Error, it's a severe problem to fix as soon as possible "+ error.getMessage());
-            }
-            catch(Exception error){
-                System.out.println("Generic error, please contact support");
-                logger.severe("Exception non handled, fix as soon as possible" + error.getMessage());
+                    switch (selection) {
+                        case ADDING_BOOK:
+                            facade.AddingBook();
+                            break;
+                        case LISTING_BOOKS:
+                            facade.ListingBooks();
+                        
+                        case EXIT:
+                            facade.exit();
+                            return;
+                    }
+                    
                 
 
+            } catch (NumberFormatException error){
+                System.out.println("Please, insert a valid choice");
+                logger.warning("Check the logic, invalid menu input "+ error.getMessage());
             }
         }
-      
     }
+}
 }

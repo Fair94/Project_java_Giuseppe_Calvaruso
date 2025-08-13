@@ -3,7 +3,12 @@ package giuseppecalvaruso.io;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Logger;
+import java.io.File;
+import java.io.FileNotFoundException;
 
 import giuseppecalvaruso.domain.Book;
 
@@ -29,4 +34,42 @@ public class bookmanager {
         
     }
     
+}
+
+public static List<Book> loadingBooks(){
+    List<Book> books = new ArrayList<>();
+    
+    
+    try(Scanner databaseScanner = new Scanner(new File("bookdatabase.txt"))){
+         while (databaseScanner.hasNextLine()){
+            String line = databaseScanner.nextLine();
+
+            try{
+                String[] bookStringParts = line.split("\\|");
+
+                String title = bookStringParts[0].split(":")[1].trim();
+                String author = bookStringParts[1].split(":")[1].trim();
+                String isbn = bookStringParts[2].split(":")[1].trim();
+                int price = Integer.parseInt(bookStringParts[3].split(":")[1].trim());
+                int year = Integer.parseInt(bookStringParts[3].split(":")[1].trim());
+
+            } catch (Exception error){
+                logger.warning("Error parsing line : "+ line);
+            }
+        }
+
+         } catch (FileNotFoundException error){
+
+            logger.severe("File not found, please quick as soon as possible "+ error.getMessage());
+
+
+         }
+
+         return books;
+
+
+
+    }
+
+
 }
