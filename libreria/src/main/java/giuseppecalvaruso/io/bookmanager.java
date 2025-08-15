@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import giuseppecalvaruso.domain.AdventureBook;
 import giuseppecalvaruso.domain.Book;
 
 /**This is the class file I'm using to mockup a book database. */
@@ -34,7 +35,7 @@ public class bookmanager {
         
     }
     
-}
+
 
 public static List<Book> loadingBooks(){
     List<Book> books = new ArrayList<>();
@@ -52,6 +53,10 @@ public static List<Book> loadingBooks(){
                 String isbn = bookStringParts[2].split(":")[1].trim();
                 int price = Integer.parseInt(bookStringParts[3].split(":")[1].trim());
                 int year = Integer.parseInt(bookStringParts[3].split(":")[1].trim());
+
+
+                Book book = new AdventureBook(title, isbn, author, price, year, false);
+                books.add(book);
 
             } catch (Exception error){
                 logger.warning("Error parsing line : "+ line);
