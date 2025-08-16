@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import giuseppecalvaruso.domain.AdventureBook;
 import giuseppecalvaruso.domain.Book;
+import giuseppecalvaruso.domain.Genre;
 import giuseppecalvaruso.exception.InputError;
 /**This is the concrete creator for the factory pattern */
 
@@ -12,7 +13,7 @@ public class standard_book_factory implements book_factory {
 
     private static final Logger logger = Logger.getLogger(standard_book_factory.class.getName());
 
-    public Book createBook(String title, String ISBN, String author, int price, int publicationYear){
+    public Book createBook(String title, String ISBN, String author, int price, int publicationYear, Genre genre){
 
         if(title == null || title.isBlank()){
             logger.warning("Impossible to create the book for  title field problem.");
@@ -37,9 +38,14 @@ public class standard_book_factory implements book_factory {
          if(publicationYear <= 0) {
             logger.warning("Impossible to create the book for publicationYear field problem ");
             throw new InputError("Please, insert a positive value ");
+       
+        }
+
+         if(genre == null){
+            genre = Genre.OTHER;
         }
         logger.info("Book created succesfully");
-        return new AdventureBook(title.trim(), ISBN.trim(), author.trim(), price,publicationYear, false);
+        return new AdventureBook(title.trim(), ISBN.trim(), author.trim(), price,publicationYear,false,genre);
 
 
     }

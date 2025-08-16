@@ -19,6 +19,7 @@ public interface  Book {
     boolean isRented();
     int getPublicationYear();
     void setRented(boolean rented);
+    Genre getGenre();
     
 
     

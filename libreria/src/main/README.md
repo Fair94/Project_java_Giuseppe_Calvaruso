@@ -37,7 +37,8 @@ CONCRETE PRODUCT: "AdventureBook.java" or other types of book,  rapresents the s
 
 CONCRETE CREATOR: "standard_book_factory.java" rapresents the real logic to create and validate any concrete product. 
 
-![Factory Pattern](./libreria/src/main/diagrams/Factory_Pattern.png)
+![Factory Pattern](diagrams/Factory_Pattern.png)
+
 
 
 

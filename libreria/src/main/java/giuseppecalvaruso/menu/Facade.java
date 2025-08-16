@@ -5,6 +5,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 
 import giuseppecalvaruso.domain.Book;
+import giuseppecalvaruso.domain.Genre;
 import giuseppecalvaruso.exception.InputError;
 import giuseppecalvaruso.factory_file.book_factory;
 import giuseppecalvaruso.factory_file.standard_book_factory;
@@ -39,7 +40,19 @@ public class Facade {
                 System.out.println("Publication year: ");
                 int publicationYear  =Integer.parseInt(input.nextLine());
 
-                Book book = factory.createBook(title, ISBN, author, price,publicationYear);
+                System.out.println("Genre:(ADVENTURE, FANTASY, HORROR, SCI_FI, ROMANCE, HISTORY, OTHER) ");
+                String g = input.nextLine();
+                Genre genre;
+                try{
+                    genre = Genre.valueOf(g.trim().toUpperCase());
+                }catch(Exception exception){
+                    genre = Genre.OTHER;
+
+
+                }
+
+
+                Book book = factory.createBook(title, ISBN, author, price,publicationYear,genre);
                 System.out.println("Book created succesfully");
                 System.out.println("Title: " + book.getTitle() + "ISBN: " + book.getISBN() + "Author: " + book.getAuthor() + "Price: " + book.getPrice() + "Publication Year: " + book.getPublicationYear());
                 logger.info("The book was created succesfully");

@@ -26,7 +26,7 @@ public class StandardBookFactoryTest {
     */
     @Test
     public void CreatingBook(){
-        Book test = factory.createBook("La leggenda di Drizzt", "987-654-33-22-11", "R.A Salvador", 1499,1990);
+        Book test = factory.createBook("La leggenda di Drizzt", "987-654-33-22-11", "R.A Salvador", 1499,1990,ADVENTURE);
         assertEquals("La leggenda di Drizzt", test.getTitle());
         assertEquals("987-654-33-22-11",test.getISBN());
         assertEquals("R.A Salvador", test.getAuthor());

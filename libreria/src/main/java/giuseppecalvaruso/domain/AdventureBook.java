@@ -14,17 +14,20 @@ public class  AdventureBook implements Book {
     private final int    price;
     private final int publicationYear;
     private boolean rented; 
+    private final Genre genre;
 
    
   
+  
     /* This is the constructor for the book */
-    public AdventureBook(String title, String ISBN, String author, int price,int publicationYear,boolean rented ){
+    public AdventureBook(String title, String ISBN, String author, int price,int publicationYear,boolean rented,Genre genre ){
         this.publicationYear = publicationYear;
         this.title = title;
         this.ISBN = ISBN;
         this.author = author;
         this.price = price;
         this.rented = false; /*by default, when we create a book object and we inserted it in our catalogue, this is not rented */
+        this.genre = genre == null? Genre.OTHER:genre;
 
     }
     /*This are the getter of the properties of the book.
@@ -52,6 +55,10 @@ public class  AdventureBook implements Book {
       public void setRented(boolean rented) {
         this.rented = rented;
     }
+     @Override
+     public Genre  getGenre(){
+        return genre;
+     }
 
 
     

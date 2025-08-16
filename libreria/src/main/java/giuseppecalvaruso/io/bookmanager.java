@@ -9,6 +9,7 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 import java.io.File;
 import java.io.FileNotFoundException;
+import giuseppecalvaruso.domain.Genre;
 
 import giuseppecalvaruso.domain.AdventureBook;
 import giuseppecalvaruso.domain.Book;
@@ -23,7 +24,7 @@ public class bookmanager {
     public static void saveBook(Book book){
         try(FileWriter writeBook = new FileWriter(FileName,true);
             PrintWriter printBook = new PrintWriter(writeBook)){
-            String bookLine = String.format("Title: %s | Author: %s | ISBN: %s | Price: %d  | Year: %d", book.getTitle(), book.getAuthor(), book.getISBN(),book.getPrice(),book.getPublicationYear());
+            String bookLine = String.format("Title: %s | Author: %s | ISBN: %s | Price: %d  | Year: %d | Genre: %s", book.getTitle(), book.getAuthor(), book.getISBN(),book.getPrice(),book.getPublicationYear(), book.getGenre()== null?"OTHER":book.getGenre().name());
             
             logger.info("Book writed succesfully");
             printBook.println(bookLine);
@@ -41,7 +42,7 @@ public static List<Book> loadingBooks(){
     List<Book> books = new ArrayList<>();
     
     
-    try(Scanner databaseScanner = new Scanner(new File("bookdatabase.txt"))){
+    try(Scanner databaseScanner = new Scanner(new File("booksdatabase.txt"))){
          while (databaseScanner.hasNextLine()){
             String line = databaseScanner.nextLine();
 
@@ -52,10 +53,12 @@ public static List<Book> loadingBooks(){
                 String author = bookStringParts[1].split(":")[1].trim();
                 String isbn = bookStringParts[2].split(":")[1].trim();
                 int price = Integer.parseInt(bookStringParts[3].split(":")[1].trim());
-                int year = Integer.parseInt(bookStringParts[3].split(":")[1].trim());
+                int year = Integer.parseInt(bookStringParts[4].split(":")[1].trim());
+                String genreString  = bookStringParts[5].split(":")[1].trim();
+                Genre genre = Genre.valueOf(genreString.toUpperCase());
 
 
-                Book book = new AdventureBook(title, isbn, author, price, year, false);
+                Book book = new AdventureBook(title, isbn, author, price, year, false,genre);
                 books.add(book);
 
             } catch (Exception error){
