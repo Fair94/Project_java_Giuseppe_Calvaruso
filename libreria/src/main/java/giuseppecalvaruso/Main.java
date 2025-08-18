@@ -45,6 +45,14 @@ public class Main {
                             break;
                         case LISTING_BOOKS:
                             facade.ListingBooks();
+
+                        case SHOW_RENTED:
+                            facade.showRentedLibrary();
+                            break;
+
+                        case SHOW_BY_GENRE:
+                            facade.printForGenre();
+                            break;
                         
                         case EXIT:
                             facade.exit();

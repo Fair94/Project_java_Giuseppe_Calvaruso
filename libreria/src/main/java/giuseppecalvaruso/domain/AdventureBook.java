@@ -26,7 +26,7 @@ public class  AdventureBook implements Book {
         this.ISBN = ISBN;
         this.author = author;
         this.price = price;
-        this.rented = false; /*by default, when we create a book object and we inserted it in our catalogue, this is not rented */
+        this.rented = rented; 
         this.genre = genre == null? Genre.OTHER:genre;
 
     }

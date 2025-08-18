@@ -1,15 +1,19 @@
 package giuseppecalvaruso.menu;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
+import giuseppecalvaruso.composite.rentedBook;
+import giuseppecalvaruso.composite.rentedLibrary;
 import giuseppecalvaruso.domain.Book;
 import giuseppecalvaruso.domain.Genre;
 import giuseppecalvaruso.exception.InputError;
 import giuseppecalvaruso.factory_file.book_factory;
 import giuseppecalvaruso.factory_file.standard_book_factory;
 import giuseppecalvaruso.io.bookmanager;
+import giuseppecalvaruso.utility.printForGenre;
 
 public class Facade {
     private static final Logger logger = Logger.getLogger(Facade.class.getName());
@@ -99,6 +103,55 @@ public class Facade {
 
 
         }
+
+
+        public void showRentedLibrary(){
+            List<Book> fullLibrary = bookmanager.loadingBooks();
+            rentedLibrary rented = new rentedLibrary();
+
+            for(Book b : fullLibrary){
+                if (b.isRented()){
+                    rented.addingBook(new rentedBook(b));
+                }
+            }
+            if(rented.isEmpty()){
+                System.out.println("No rented Books");
+        } else {
+
+            rented.print();
+        }
+    }
+
+
+        public void printForGenre(){
+            System.out.println("Insert genre: \n - ADVENTURE \n - FANTASY \n - HORROR \n - SCI_FI \n - ROMANCE \n - HISTORY \n - OTHER \n");
+            String choice = input.nextLine();
+            Genre genre;
+            try{
+                genre = Genre.valueOf(choice.trim().toUpperCase());
+            } catch(Exception error){
+                System.out.println("Invalid genre. Switching to OTHER");
+                genre = Genre.OTHER;
+            }
+
+            List<Book> allBooks = bookmanager.loadingBooks();
+            List<Book> forGenre = new ArrayList<>();
+
+            for (Book b : allBooks){
+                if (b.getGenre() == genre){
+                    forGenre.add(b);
+                }
+            }
+            if (forGenre.isEmpty()){
+                System.out.println("No book found for genre: "+ genre);
+            }else{
+                printForGenre<Book> print = new printForGenre<>();
+                print.print(forGenre);
+            }
+        }
+        
+
+        
 
         public void exit(){
             System.out.println("Thanks for using our service. Have a nice day");
