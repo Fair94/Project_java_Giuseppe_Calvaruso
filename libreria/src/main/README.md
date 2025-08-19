@@ -37,7 +37,36 @@ CONCRETE PRODUCT: "AdventureBook.java" or other types of book,  rapresents the s
 
 CONCRETE CREATOR: "standard_book_factory.java" rapresents the real logic to create and validate any concrete product. 
 
-![Factory Pattern](diagrams/Factory_Pattern.png)
+![Factory Pattern](diagrams/Factory_Pattern.png)  
+
+-COMPOSITE PATTERN-  
+I've introduced the composite pattern to manage the library in 2 distinct section: rented and not rented.  
+In this way user can manage the library and see which book is Rented.
+
+COMPONENT (interface): "rentedLibraryComponent.java" grant common print operation both for book and library.  
+  
+LEAF :"rentedBook.java" represent single book. Implements COMPONENT to print the detail of the book.
+
+COMPOSITE: "rentedLibrary.java" store a list of COMPONENT. It can add book and print the list.  
+
+![Composite Pattern](diagrams/COMPOSITE_PATTERN.png)  
+
+-ITERATOR PATTERN-  
+I've used the iterator pattern to hide the internal status of my app.
+The user, through the FACADE does not know the list of the book.  
+
+ITERATOR: "BooksIterator.java". It has two methods that work on the list of the book.
+
+CONCRETE ITERATOR: "LibraryBookIterator.java". Implements ITERATOR and gave an index to the books.
+
+AGGREGATE: "BooksCollection.java". Has a list of the book and apply to it The CONCRETE ITERATOR  
+
+CONCRETE AGGREGATE: "Library.java". Implements AGGREGATE and gave an iterator to the list. 
+
+![Iterator Pattern](diagrams/ITERATOR_PATTERN.png)  
+-EXCEPTION SHIELDING-
+
+
 
 
 

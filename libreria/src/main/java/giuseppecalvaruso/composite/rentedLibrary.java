@@ -11,7 +11,7 @@ public class rentedLibrary implements rentedLibraryComponent {
 
     }
 
-    public void removingBokk(rentedLibraryComponent component){
+    public void removingBook(rentedLibraryComponent component){
         rentedBooks.remove(component);
 
     }

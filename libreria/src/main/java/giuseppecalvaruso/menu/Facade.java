@@ -13,6 +13,8 @@ import giuseppecalvaruso.exception.InputError;
 import giuseppecalvaruso.factory_file.book_factory;
 import giuseppecalvaruso.factory_file.standard_book_factory;
 import giuseppecalvaruso.io.bookmanager;
+import giuseppecalvaruso.iterator.BooksIterator;
+import giuseppecalvaruso.iterator.Library;
 import giuseppecalvaruso.utility.printForGenre;
 
 public class Facade {
@@ -86,20 +88,23 @@ public class Facade {
         }
 
         public void ListingBooks(){
-            List <Book> books = bookmanager.loadingBooks();
-            if(books.isEmpty()){
-                System.out.println("The library is empty");
-            } else{
-                System.out.println("Printing books in library ");
-                for (Book book : books){
-                    System.out.printf("- %s | %s | %s | %d€ | %d\n",
-                    book.getTitle(),
-                    book.getAuthor(),
-                    book.getISBN(),
-                    book.getPrice(),
-                    book.getPublicationYear());
-                }
-            }
+           Library library = new Library();
+           BooksIterator iterator = library.createIterator();
+           
+           if(!iterator.hasNext()){
+            System.out.println("No books in collection");
+           }
+
+           while(iterator.hasNext()){
+            Book book = iterator.next();
+            System.out.printf("%s | %s | %s | %d$ | %d\n",
+            book.getTitle(),
+            book.getAuthor(),
+            book.getISBN(),
+            book.getPrice(),
+            book.getPublicationYear()
+            );
+           }
 
 
         }

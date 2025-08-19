@@ -1,0 +1,11 @@
+<script>start("c:\\Users\\dueam\\Desktop\\esami\\Project_java_Giuseppe_Calvaruso\\libreria\\src\\main\\java\\giuseppecalvaruso\\");</script>
+<script>onHasParentDirectory();</script>
+<script>addRow("composite","composite",1,0,"0 B",1755501837,"8/18/25, 9:23:57 AM");</script>
+<script>addRow("domain","domain",1,0,"0 B",1755355730,"8/16/25, 4:48:50 PM");</script>
+<script>addRow("exception","exception",1,0,"0 B",1755006216,"8/12/25, 3:43:36 PM");</script>
+<script>addRow("factory_file","factory_file",1,0,"0 B",1755005855,"8/12/25, 3:37:35 PM");</script>
+<script>addRow("io","io",1,0,"0 B",1755073666,"8/13/25, 10:27:46 AM");</script>
+<script>addRow("iterator","iterator",1,0,"0 B",1755590002,"8/19/25, 9:53:22 AM");</script>
+<script>addRow("menu","menu",1,0,"0 B",1755093588,"8/13/25, 3:59:48 PM");</script>
+<script>addRow("utility","utility",1,0,"0 B",1755504351,"8/18/25, 10:05:51 AM");</script>
+<script>addRow("Main.java","Main.java",0,2330,"2.3 kB",1755508884,"8/18/25, 11:21:24 AM");</script>
