@@ -30,24 +30,50 @@ public class Facade {
     
     public void AddingBook(){
 
-        try{
-           System.out.println("Title: ");
-                String title = input.nextLine();
+        
+                System.out.println("Title: ");
+                String title = input.nextLine().trim();
 
                 System.out.println("ISBN: ");
-                String ISBN = input.nextLine();
+                String ISBN = input.nextLine().trim();
 
                 System.out.println("Author: ");
-                String author = input.nextLine();
+                String author = input.nextLine().trim();
 
                 System.out.println("Price: ");
-                int price = Integer.parseInt(input.nextLine());
+                String sprice = input.nextLine().trim();
 
                 System.out.println("Publication year: ");
-                int publicationYear  =Integer.parseInt(input.nextLine());
+                String year = input.nextLine().trim();
 
                 System.out.println("Genre:(ADVENTURE, FANTASY, HORROR, SCI_FI, ROMANCE, HISTORY, OTHER) ");
                 String g = input.nextLine();
+
+
+                if(title.isEmpty() || author.isEmpty() || ISBN.isEmpty()){
+                    logger.warning("Mandatory fields are missing, check again (author, title, ISBN)");
+                    throw new InputError("Missing mandatory fields");
+                }
+
+                int price,publicationYear;
+
+                try{
+                    price = Integer.parseInt(sprice);
+                    publicationYear = Integer.parseInt(year);
+                } catch(NumberFormatException error){
+                    logger.warning("Invalid format for price/publicationYear");
+                    throw new InputError("Invalid number for price or publication year");
+                }
+
+                if (price <0){
+                    logger.info("negative number"+ price);
+                    throw new InputError("Price cannot be less than 0");
+                }
+
+                if (publicationYear< 1400 || publicationYear> 2100){
+                    logger.warning("Out of range year"+ publicationYear);
+                    throw new InputError("Invalid publication year");
+                }
                 Genre genre;
                 try{
                     genre = Genre.valueOf(g.trim().toUpperCase());
@@ -69,23 +95,10 @@ public class Facade {
 
             
 
-            catch (NumberFormatException error){
-                System.out.println("Please, insert a valid price for the book");
-                logger.warning("There's a problem in the number format, check testing with 0, number or negative number"+ error.getMessage());
-
-            }
-            catch (InputError error){
-
-                System.out.println("Error in book's field, try again");
-                logger.severe("Input Error, it's a severe problem to fix as soon as possible "+ error.getMessage());
-            }
-            catch(Exception error){
-                System.out.println("Generic error, please contact support");
-                logger.severe("Exception non handled, fix as soon as possible" + error.getMessage());
-                
-
-            }
-        }
+            
+            
+          
+        
 
         public void ListingBooks(){
            Library library = new Library();

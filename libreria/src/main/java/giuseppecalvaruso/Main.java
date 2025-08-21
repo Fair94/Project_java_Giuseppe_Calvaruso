@@ -2,6 +2,9 @@ package giuseppecalvaruso;
 
 import java.util.Scanner;
 import java.util.logging.Logger;
+import java.util.logging.Level;
+
+import giuseppecalvaruso.exception.Exception_Shield;
 import giuseppecalvaruso.menu.Facade;
 import giuseppecalvaruso.menu.Mainmenu;
 
@@ -29,43 +32,59 @@ public class Main {
             while(true){
                 Mainmenu.Menu();
                 String userChoice = input.nextLine();
+                
 
                 try{
                     int parsedUserChoiche = Integer.parseInt(userChoice);
-                    Mainmenu selection = Mainmenu.number(parsedUserChoiche);
+                
 
-                    if(selection == null){
-                        System.out.println("Incorrect choice, try again");
+                    if(parsedUserChoiche<1 || parsedUserChoiche>5){
+                        System.out.println("Incorrect choice, choose between 1 and 5");
+                        logger.log(Level.WARNING,"Out of range choice"+ parsedUserChoiche);
+                        continue;
+                    }
+                    Mainmenu choice = Mainmenu.number(parsedUserChoiche);
+                    if(choice == null){
+                        System.out.println("Invalid choice, retry");
+                        logger.log(Level.WARNING,"Null choice" + parsedUserChoiche);
                         continue;
                     }
 
-                    switch (selection) {
+                   String msg = null;
+                   switch(choice){
                         case ADDING_BOOK:
-                            facade.AddingBook();
+                            msg = Exception_Shield.thePolice(()->facade.AddingBook(),logger,"Adding book function");
                             break;
+                        
                         case LISTING_BOOKS:
-                            facade.ListingBooks();
-
-                        case SHOW_RENTED:
-                            facade.showRentedLibrary();
+                            msg = Exception_Shield.thePolice(()->facade.ListingBooks(),logger,"Printing book function");
                             break;
-
+                        
+                        case SHOW_RENTED:
+                            msg = Exception_Shield.thePolice(()->facade.showRentedLibrary(),logger,"Printing rented book function");
+                            break;
+                        
                         case SHOW_BY_GENRE:
-                            facade.printForGenre();
+                            msg = Exception_Shield.thePolice(()->facade.printForGenre(),logger,"Printing  book by genre function");
                             break;
                         
                         case EXIT:
-                            facade.exit();
+                            msg = Exception_Shield.thePolice(()->facade.exit(),logger,"Quitting function");
+                            System.out.println("Closing app. Have a nice day");
                             return;
                     }
                     
-                
-
-            } catch (NumberFormatException error){
-                System.out.println("Please, insert a valid choice");
-                logger.warning("Check the logic, invalid menu input "+ error.getMessage());
+                    if(msg!= null){
+                        System.out.println(msg);
+                    }else {
+                        logger.info("Mission" + choice +  "completed") ;
+                    }
+                } catch(NumberFormatException error){
+                    System.out.println("Please, insert a valid number");
+                    logger.log(Level.WARNING,"Input error" + error.getMessage());
+                }
             }
         }
     }
 }
-}
+            
