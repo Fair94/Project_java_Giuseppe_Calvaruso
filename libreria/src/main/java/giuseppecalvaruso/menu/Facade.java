@@ -106,6 +106,8 @@ public class Facade {
            
            if(!iterator.hasNext()){
             System.out.println("No books in collection");
+            logger.info("Empty library");
+            return;
            }
 
            while(iterator.hasNext()){
@@ -134,9 +136,11 @@ public class Facade {
             }
             if(rented.isEmpty()){
                 System.out.println("No rented Books");
+                logger.info("No rented books");
         } else {
 
             rented.print();
+            logger.info("showing rented library");
         }
     }
 
@@ -148,7 +152,7 @@ public class Facade {
             try{
                 genre = Genre.valueOf(choice.trim().toUpperCase());
             } catch(Exception error){
-                System.out.println("Invalid genre. Switching to OTHER");
+                logger.warning("Invalid genre"+ choice + "fallback to OTHER");
                 genre = Genre.OTHER;
             }
 

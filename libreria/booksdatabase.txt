@@ -1,0 +1,1 @@
+Title: Title | Author: Author | ISBN: 12345 | Price: 10  | Year: 2000 | Genre: ADVENTURE
