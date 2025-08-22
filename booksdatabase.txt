@@ -1,1 +1,2 @@
-Title: ciao | Author: ciao | ISBN: ciao | Price: 12  | Year: 23
+Title: The lord of the ring | Author: J.R.R Tolkien | ISBN: 0544003411 | Price: 17  | Year: 2012 | Genre: FANTASY
+Title: Around the world in Eighty Days | Author: Jules Verne | ISBN: 8853010991 | Price: 10  | Year: 2011 | Genre: ADVENTURE

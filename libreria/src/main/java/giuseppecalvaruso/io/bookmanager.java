@@ -38,10 +38,11 @@ public class bookmanager {
             
             logger.info("Book writed succesfully");
             printBook.println(bookLine);
+            } catch(IOException exception){
+                logger.severe("Error in writing book" + exception.getMessage());
             }
         } ,logger,"Saving book into file");
-        // catch(IOException error){
-        //     logger.severe("Failed to write the book in file "+ error.getMessage());
+        
         
 
         
@@ -66,14 +67,20 @@ public static List<Book> loadingBooks(){
                 int price = Integer.parseInt(bookStringParts[3].split(":")[1].trim());
                 int year = Integer.parseInt(bookStringParts[4].split(":")[1].trim());
                 String genreString  = bookStringParts[5].split(":")[1].trim();
-                Genre genre = Genre.valueOf(genreString.toUpperCase());
+                Genre genre ;
+
+                try{
+                    genre = Genre.valueOf(genreString.toUpperCase());
+                } catch(Exception exception){
+                    genre = Genre.OTHER;
+                }
 
 
-                Book book = new AdventureBook(title, isbn, author, price, year, false,genre);
+                Book book = factory.createBook(title, isbn, author, price, year, genre);
                 books.add(book);
 
             } catch (Exception error){
-                logger.warning("Error parsing line : "+ line);
+                logger.warning("Error parsing line : "+ line + error.getMessage());
             }
         }
 

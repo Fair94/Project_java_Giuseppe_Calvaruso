@@ -56,5 +56,12 @@ public abstract  class AbstractBook implements Book {
             return genre;
         }
 
+        @Override
+        public String toString(){
+
+            return String.format("Title: %s | Author: %s | ISBN: %s | Price: %d | Year: %d | Genre: %s | Rented: %s",
+            title,author,ISBN,price,publicationYear,genre,rented?"Yes":"No");
+        }
+
     
 }
