@@ -72,6 +72,14 @@ public class Main {
                             msg = Exception_Shield.thePolice(()->facade.exit(),logger,"Quitting function");
                             System.out.println("Closing app. Have a nice day");
                             return;
+
+                        case RENT_BOOK:
+                            msg = Exception_Shield.thePolice(()->facade.rentBook(), logger, "Trying to rent a book");
+                            break;
+
+                        case RETURN_BOOK:
+                            msg = Exception_Shield.thePolice(()->facade.returnBook(), logger, "Trying to return a book");
+                            break;
                     }
                     
                     if(msg!= null){

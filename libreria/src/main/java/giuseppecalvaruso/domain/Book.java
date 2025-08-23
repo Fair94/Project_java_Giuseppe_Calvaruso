@@ -1,18 +1,21 @@
 package giuseppecalvaruso.domain;
+
+import annotations.notEmpty;
+
 /**
- * This is the Product element of fatory pattern
+ * This is the Product element of factory pattern
  */
-/**Interface  for creating a generic book.
- * @param getTitle takes the book's Title
- * @param getISBN takes book'ISBN
- * @param getAuthor takes book's Author
- * @param getPrice takes book's Price
- * @param isRented return True if is rented, False if is avaiable for renting
- * @param setRented set the rented status 
-  */
 
 public interface  Book {
+
+  /**Returning title of the book
+   * Not empty, @NotEmpty annotation
+   * @return book's title
+   */
+    @notEmpty
     String getTitle();
+
+
     String getISBN();
     String getAuthor();
     int getPrice();
