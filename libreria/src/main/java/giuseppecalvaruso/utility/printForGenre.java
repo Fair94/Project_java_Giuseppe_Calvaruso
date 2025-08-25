@@ -2,11 +2,17 @@ package giuseppecalvaruso.utility;
 import java.util.List;
 import java.util.logging.Logger;
 
-
+/**
+ * Utility class to print elements by genre(books)
+ */
 public class printForGenre<T> {
 
     private static final Logger logger = Logger.getLogger(printForGenre.class.getName());
 
+    /**
+     * Prints elements of given list 
+     * @param genreList printing list to the console 
+     */
     public void  print(List<T> genreList){
             if(genreList == null){
                 logger.warning("Genre list is null");

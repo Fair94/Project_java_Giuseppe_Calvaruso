@@ -8,18 +8,7 @@ import giuseppecalvaruso.exception.Exception_Shield;
 import giuseppecalvaruso.menu.Facade;
 import giuseppecalvaruso.menu.Mainmenu;
 
-/**
- * In the main I'm going to create the book, asking to operator the fields of the book and inserting it in a file 
- */
 
- /** 
- * @param title is for the title book
- * @param ISBN is for the identification number of the book
- * @param author is for the name of the book's author 
- * @param price is for the book's price
- * @param rented is a Boolean. If true the book is not in library. If false is in library 
- * @param Scanner is used to scan input  from the user 
- */
 
 public class Main {
 

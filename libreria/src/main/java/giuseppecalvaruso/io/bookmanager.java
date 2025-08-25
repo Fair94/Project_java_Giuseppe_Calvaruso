@@ -16,7 +16,9 @@ import giuseppecalvaruso.factory_file.standard_book_factory;
 import giuseppecalvaruso.domain.AdventureBook;
 import giuseppecalvaruso.domain.Book;
 
-/**This is the class file I'm using to mockup a book database. */
+/**This is the class file I'm using to mockup a book database.
+ * Known Limitation: rented works only runtime. The rent status is resetted . 
+ */
 public class bookmanager {
 
     private static final String FileName = "booksdatabase.txt";
@@ -25,6 +27,10 @@ public class bookmanager {
 
 
     public static void saveBook(Book book){
+        /**
+         * Saving book in a single line
+         * 
+        */
         Exception_Shield.thePolice(() ->{
         try(FileWriter writeBook = new FileWriter(FileName,true);
             PrintWriter printBook = new PrintWriter(writeBook)){
@@ -51,6 +57,10 @@ public class bookmanager {
 
 
 public static List<Book> loadingBooks(){
+
+    /**
+     * returning list of books.
+     */
     List<Book> books = new ArrayList<>();
     
     

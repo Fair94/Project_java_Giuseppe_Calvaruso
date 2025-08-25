@@ -1,12 +1,40 @@
 package giuseppecalvaruso.domain;
 
+import annotations.ISBN;
+import annotations.Positive;
+import annotations.Rented;
+import annotations.notEmpty;
+
+/**
+ * base class for books
+ */
 public abstract  class AbstractBook implements Book {
+    /**title, must not be empty */
+    @notEmpty
     private final String title;
+
+    /**Isbn, check format */
+     @ISBN(lenght = 13)
     private final String ISBN;
+   
+
+    /**author of the book, must not be empty */
+    @notEmpty
     private final String author;
+
+    /**price for the book, positive */
+    @Positive(positive = true)
     private final int price;
+
+    /**Publication year */
+    @Positive(positive = true)
     private final int publicationYear;
+
+    /** To rented or not to be rented?? */
+    @Rented
     private boolean rented;
+
+    /**Book genre */
     private final Genre genre;
 
         public AbstractBook(String title, String ISBN, String author, int price, int publicationYear, boolean rented, Genre genre){

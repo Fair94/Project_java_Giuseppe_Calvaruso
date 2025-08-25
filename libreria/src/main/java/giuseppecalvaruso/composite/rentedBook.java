@@ -4,9 +4,19 @@ import java.util.logging.Logger;
 
 import giuseppecalvaruso.domain.Book;
 
+/**Leaf elements of composite pattern
+ * Rapresents a single book in a rentedlibrary
+ */
 public class rentedBook implements rentedLibraryComponent {
     private final Book book;
     private static final Logger logger = Logger.getLogger(rentedBook.class.getName());
+
+
+    /**
+     * Wrapping a book 
+     * @param book to wrap
+     * @throws IllegalArgumentException if the book is null
+     */
 
     public rentedBook(Book book){
         if(book == null){
@@ -14,7 +24,9 @@ public class rentedBook implements rentedLibraryComponent {
         }
         this.book = book;
     }
-
+    /**
+     * Printing rented Books info 
+     */
     @Override
     public void print(){
         try{
