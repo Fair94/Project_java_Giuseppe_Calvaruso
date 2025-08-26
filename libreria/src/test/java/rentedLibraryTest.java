@@ -20,7 +20,7 @@ public class rentedLibraryTest {
         rentedLibrary library = new rentedLibrary();
         assertTrue(library.isEmpty());
     }
-
+    @Test
     public void testAddingAndRemove(){
 
         rentedLibrary library  = new rentedLibrary();

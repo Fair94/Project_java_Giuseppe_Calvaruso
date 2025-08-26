@@ -76,17 +76,7 @@ SERVICE:"standard_book_factory.java", "bookmanager.java" and many other file can
 
 EXCEPTION SHIELDING HANDLER: "Facade.java" and many other files catch this exception and shows only logger info.  
 ![Excheption Shielding Pattern](diagrams/EXCEPTION_SHIELDING_PATTERN.png)  
--FACADE-  
-I emplemented FACADE PATTERN because I was going crazy with the functionality of the app. 
-With FACADE I create a menu and for every choice there was a subsystem associated (the diagram is not exausistive),
-Generally the FACADE  gave a simple interface to the user and do not expose internal functionality
 
-FACADE : "Facade.java" gave to the Main simple method 
-
-SUBSYSTEM: The various subsystem gave function to my app 
-
-
-![Facade Pattern](diagrams/FACADE_PATTERN.png) 
 
 #TECHNOLOGIES  
 -COLLECTION FRAMEWORK-   
@@ -114,7 +104,141 @@ There are a lot of things I can do on this app.
 First I can integrate a payment system to buy/sell book from/for user.   
 I can add a login features with hardcoded credentials. I can create two user: admin and normal user with different operation.  
 
+
+#OPTIONAL ADVANCED FEATURES  
+-FACADE-  
+I emplemented FACADE PATTERN because I was going crazy with the functionality of the app. 
+With FACADE I create a menu and for every choice there was a subsystem associated (the diagram is not exausistive),
+Generally the FACADE  gave a simple interface to the user and do not expose internal functionality
+
+FACADE : "Facade.java" gave to the Main simple method 
+
+SUBSYSTEM: The various subsystem gave function to my app 
+
+
+![Facade Pattern](diagrams/FACADE_PATTERN.png)  
+#CUSTOM ANNOTATIONS 
+I've used this optional feature to divide the declarative logic from the procedural logic. 
+Using custom annotations is important in order to adding functionality avoiding modifying code  
+#MOCKITO
+While i was working with junit test, I've introduced Mockito test. 
+Mockito permits to isolate soome functionality of the app from third party dependencies and check eventually excepted or unexcepted behaviors
+
+#STREAM API AND LAMBDAS  
+I have not fully integrated the streamapi, but i've used lambdas.
+Lambdas techonologies permits to reduce the verbosity of java, permits to apply filter logic to the apps and simplify the code avoiding anonymous class.
+
+
+#SETUP AND EXECUTION INSTRUCTIONS
+
+-Requirements-  
+
+ Java 17 required or newer version.   
+ Maven  
+ Ide: Visual Studio code  or other
+
+ -Setting up-  
+
+ 1)Download repository  
+ 2)Unzip it  
+ 3)Verify the structure:  
+  pom.xml in libreria folder  
+  source code in `src/main/java/giuseppecalvaruso/`  
+ 4) If you are using IntelliJ verify the project is  
+    recognised   as Maven Project
+
+
+-IDE execution -  
+1)Open project with your ide  
+2)Go to `Main.java`  
+3) Right Click on mouse: run Main  
+4) Use app with CLI (Command Line Interface)  
+
+#KNOWN LIMITATIONS AND FUTURE WORK  
+Known limits of the apps are surely the fact the rented/not rented works on running app. 
+Future works include modifying permanently this field in the mocked database.
+Future works includes recognizing an external pheripheral such a barcode reader, facilitating reading and writing information about book.
+In the future, the app could introduce a customer management, where every customer has it's own ID. With the ID, the app prints the info, how many books has rented and how many books could the customer rent.
+The books have its own price. 
+The app could integrate a sort of payment management, introducing payment via cards, paypal, credit and so on. 
+The app was not designed solely for books, but is extendable for any product tha has a barcode. 
+For example, if we have to run a grocery shops, we could use the genres of the books as foodstuffs (we have of course to change some names)
+
 #TEST SUITE  
+The project include a folder test with junit and mockito test
+The test classes are located in:  
+`src/test/java/giuseppecalvaruso/`  
+- `book_factory_mockito_test.java`  
+   Uses Mockito to simulate the behavior of a `book_factory` and verify that the `createBook()` method is called with the expected parameters and returns the correct mocked object.  
+
+- `book_manager_test.java`  
+   Integration test for reading and writing books to the mock database (`bookdatabase.txt`).  
+   Verifies correct persistence of single and multiple books, and proper handling of an empty file.  
+
+- `ExceptionShieldMockitoTest.java`  
+   Unit tests for the `Exception_Shield` class using Mockito.  
+   Simulates both expected (`InputError`) and unexpected (`RuntimeException`) errors to verify that:
+   - The correct logger method is called (`warning` or `severe`)
+   - A safe message is returned to the user  
+
+- `ExceptionShieldTest.java`  
+   Unit tests for the `Exception_Shield` logic using a real `Logger`.  
+   Verifies the shielding behavior in three scenarios: expected error (`InputError`), unexpected error (`RuntimeException`), and no error at all.  
+
+- `FacadeTest.java`  
+   Tests the `Facade` class, simulating user input via a `Scanner`.  
+   Verifies that invalid inputs (empty title, negative price) trigger `InputError`, and that valid input is accepted without exceptions.  
+
+- `LibraryBookIteratorMockitoTest.java`  
+   Tests the `LibraryBookIterator` class using mocked `List` and `Iterator` objects.  
+   Verifies correct iteration behavior, including edge case when no elements are left.  
+- `LibraryBookIteratorTest.java`  
+   Unit tests for the real behavior of `LibraryBookIterator`.  
+   Verifies iteration over a real list of books, as well as edge cases such as an empty list or null input.  
+
+- `LibraryTest.java`  
+   Tests the `Library` class as a concrete aggregate for the Iterator Pattern.  
+   Verifies that a valid iterator is returned and handles the case of an empty library correctly.  
+
+- `MainMenuTest.java`  
+   Unit tests for the `Mainmenu` enum.  
+   Verifies that valid numeric inputs are correctly mapped to menu options and that invalid inputs return `null` as expected.  
+
+- `print_for_genre_test.java`  
+   Tests the `printForGenre<T>` utility class.  
+   Verifies that the `print()` method handles null, empty, and valid lists without throwing exceptions.  
+
+- `rentedBooktest.java`  
+   Unit tests for the `rentedBook` class, which acts as a leaf in the Composite Pattern.  
+   Verifies that the class correctly throws an exception when constructed with `null`, and that the `print()` method works as expected for valid books.
+- `rentedBooktest.java`  
+   Unit tests for the `rentedBook` class, which acts as a leaf in the Composite Pattern.  
+   Verifies that the class correctly throws an exception when constructed with `null`, and that the `print()` method works as expected for valid books.
+
+- `rentedLibraryTest.java`  
+   Unit tests for the `rentedLibrary` class, which acts as a composite in the Composite Pattern.  
+   Verifies correct handling of book addition/removal, proper response to null inputs, and the behavior of the `isEmpty()` method.  
+- `StandardBookFactoryTest.java`  
+   Extensive unit tests for the `standard_book_factory` class, validating the correct creation of `Book` objects.  
+   Tests both successful cases and all major input validation rules: empty fields, negative values, and null genre handling.  
+- `SubBookTest.java`  
+   Parameterized test that verifies `Book` creation for all possible `Genre` enum values.  
+   Ensures that each genre is correctly assigned by the factory.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
