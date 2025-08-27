@@ -27,8 +27,8 @@ public class Main {
                     int parsedUserChoiche = Integer.parseInt(userChoice);
                 
 
-                    if(parsedUserChoiche<1 || parsedUserChoiche>5){
-                        System.out.println("Incorrect choice, choose between 1 and 5");
+                    if(parsedUserChoiche<1 || parsedUserChoiche>7){
+                        System.out.println("Incorrect choice, choose between 1 and 7");
                         logger.log(Level.WARNING,"Out of range choice"+ parsedUserChoiche);
                         continue;
                     }
