@@ -5,6 +5,7 @@ import java.util.logging.Logger;
 import java.util.logging.Level;
 
 import giuseppecalvaruso.exception.Exception_Shield;
+import giuseppecalvaruso.gui.GraphicInterface;
 import giuseppecalvaruso.menu.Facade;
 import giuseppecalvaruso.menu.Mainmenu;
 
@@ -15,6 +16,13 @@ public class Main {
     private static final Logger logger = Logger.getLogger(Main.class.getName());
     
     public static void main(String[] args) {
+        Scanner scannermode = new Scanner(System.in);
+
+        System.out.println("Choose the mode:");
+        System.out.println("1)Console");
+        System.out.println("2)GUI(This mode is in alpha mode, it could broke the app)");
+        String mainchoice = scannermode.nextLine().trim();
+        if(mainchoice.equals("1")){
         try (Scanner input = new Scanner(System.in)) {
             Facade facade = new Facade(input);
 
@@ -86,6 +94,11 @@ public class Main {
                 }
             }
         }
+    } else if(mainchoice.equals("2")){
+        GraphicInterface.startGraphic();
+    }else{
+        System.out.println("Invalid choice, exiting");
+    }
     }
 }
             

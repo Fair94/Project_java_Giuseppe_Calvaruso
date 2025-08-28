@@ -16,6 +16,9 @@ import giuseppecalvaruso.factory_file.standard_book_factory;
 import giuseppecalvaruso.io.bookmanager;
 import giuseppecalvaruso.iterator.BooksIterator;
 import giuseppecalvaruso.iterator.Library;
+import giuseppecalvaruso.observer.LibraryEventHandler;
+import giuseppecalvaruso.observer.ObserverLogger;
+import giuseppecalvaruso.observer.StatusObsver;
 import giuseppecalvaruso.strategy.AuthorSorting;
 import giuseppecalvaruso.strategy.PriceSorting;
 import giuseppecalvaruso.strategy.SortingContext;
@@ -31,10 +34,13 @@ public class Facade {
     private static final Logger logger = Logger.getLogger(Facade.class.getName());
     private final Scanner input;
     private final book_factory factory;
+    private final LibraryEventHandler eventHandler = new LibraryEventHandler();
 
     public Facade(Scanner input){
         this.input = input;
         this.factory = new standard_book_factory();
+        eventHandler.subscribe(new ObserverLogger());
+        eventHandler.subscribe(new StatusObsver());
 
     }
     
@@ -216,6 +222,7 @@ public class Facade {
                     b.setRented(true);
                     System.out.println("Book rented succesfully");
                     logger.info("Book rented with isbn "+ isbn);
+                    eventHandler.notify("rent",b);
                 }
                 return ;
             }
@@ -245,7 +252,13 @@ public class Facade {
                 }
                 return;
             }
+            else{
+            b.setRented(false);
+            System.out.println("Book returned");
+            logger.info("Returned book with isbn"+ isbn);
+            eventHandler.notify("return",b);
         }
+        } 
         System.out.println("Book not found.");
         logger.warning("Isbn not found for this book");
 
