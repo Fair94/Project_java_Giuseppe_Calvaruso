@@ -27,8 +27,8 @@ public class Main {
                     int parsedUserChoiche = Integer.parseInt(userChoice);
                 
 
-                    if(parsedUserChoiche<1 || parsedUserChoiche>7){
-                        System.out.println("Incorrect choice, choose between 1 and 7");
+                    if(parsedUserChoiche<1 || parsedUserChoiche>8){
+                        System.out.println("Incorrect choice, choose between 1 and 8");
                         logger.log(Level.WARNING,"Out of range choice"+ parsedUserChoiche);
                         continue;
                     }
@@ -69,6 +69,10 @@ public class Main {
                         case RETURN_BOOK:
                             msg = Exception_Shield.thePolice(()->facade.returnBook(), logger, "Trying to return a book");
                             break;
+
+                        case SORT_BOOK:
+                            msg = Exception_Shield.thePolice(()->facade.sortingBooks(), logger, "Trying to sort a book");
+                            break;    
                     }
                     
                     if(msg!= null){

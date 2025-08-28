@@ -16,6 +16,11 @@ import giuseppecalvaruso.factory_file.standard_book_factory;
 import giuseppecalvaruso.io.bookmanager;
 import giuseppecalvaruso.iterator.BooksIterator;
 import giuseppecalvaruso.iterator.Library;
+import giuseppecalvaruso.strategy.AuthorSorting;
+import giuseppecalvaruso.strategy.PriceSorting;
+import giuseppecalvaruso.strategy.SortingContext;
+import giuseppecalvaruso.strategy.TitleSorting;
+import giuseppecalvaruso.strategy.YearSorting;
 import giuseppecalvaruso.utility.printForGenre;
 
 
@@ -245,6 +250,64 @@ public class Facade {
         logger.warning("Isbn not found for this book");
 
      }
+
+     /**Allowing user to sort the book using Strategy
+      * Sort by Title,Price,Author, Publication Year
+      */
+      @MenuOption(label="Sorting", index = 8)
+      public void sortingBooks(){
+        List<Book> allBooks = bookmanager.loadingBooks();
+        if(allBooks == null || allBooks.isEmpty()){
+            logger.info("No books to sort");
+            System.out.println("No books in library");
+            return;
+        }
+
+        System.out.println("Choose sorting method:");
+        System.out.println("1)Title");
+        System.out.println("2)Author");
+        System.out.println("3)Price");
+        System.out.println("4)Publication Yeaer");
+
+        String choice = input.nextLine().trim();
+        SortingContext context = new SortingContext();
+
+        try{
+            switch(choice){
+                case "1":
+                context.setStrategy(new TitleSorting());
+                break;
+
+                case "2":
+                context.setStrategy(new AuthorSorting());
+                break;
+
+                case "3":
+                context.setStrategy(new PriceSorting());
+                break;
+
+                case "4":
+                context.setStrategy(new YearSorting());
+                break;
+
+                default:
+                logger.warning("Invalid choice"+ choice);
+                System.out.println("Invalid choice, skipping sorting");
+                return;
+            }
+
+            context.executing((allBooks));
+            logger.info("Books sorted"+choice);
+
+                System.out.println("SortedBooks");
+                allBooks.forEach(System.out::println);
+            
+            } catch(Exception exception){
+                logger.severe("Error in sorting book"+ exception.getMessage());
+                System.out.println("An error occurred in sorting");
+            }
+        
+      }
 
        
    

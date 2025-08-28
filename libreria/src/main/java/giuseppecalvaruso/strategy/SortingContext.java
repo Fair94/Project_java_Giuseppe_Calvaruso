@@ -1,6 +1,6 @@
 package giuseppecalvaruso.strategy;
 
-import java.awt.List;
+import java.util.List;
 import java.util.logging.Logger;
 import giuseppecalvaruso.domain.Book;
 
@@ -24,7 +24,17 @@ public class SortingContext {
         this.strategy = strategy;
 
     }
+    /**
+     * 
+     * @param books list of book to sort
+     */
+    public void executing(List <Book> books){
+        if (strategy == null){
+            logger.warning("No sorting strategy, skipping");
+            return;
+        }
+        strategy.sort(books);
 
-    public void executing(List<Book> books){}
+    }
     
 }
