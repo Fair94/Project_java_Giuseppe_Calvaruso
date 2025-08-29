@@ -11,7 +11,8 @@ public enum Mainmenu {
     SHOW_BY_GENRE,
     RENT_BOOK,
     RETURN_BOOK,
-    SORT_BOOK;
+    SORT_BOOK,
+    DELETE_BOOK;
 
 
 
@@ -29,6 +30,7 @@ public enum Mainmenu {
     System.out.println("6)Rent a book");
     System.out.println("7)Returning book");
     System.out.println("8)Sorting book");
+    System.out.println("9)Delete a  book");
     System.out.println("Insert your choice");
   }
 
@@ -58,6 +60,9 @@ public enum Mainmenu {
 
         case 8:
         return SORT_BOOK;
+
+        case 9 :
+        return DELETE_BOOK;
         
         default:
             return null;

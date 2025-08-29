@@ -18,7 +18,7 @@ import giuseppecalvaruso.io.bookmanager;
 
 
 public class book_manager_test {
-    private static final String fileTest = "bookdatabase.txt";
+    private static final String fileTest = "bookdatabase.txt"; // without the s, in order non to delete database
     private final book_factory factory = new standard_book_factory();
 
     @BeforeEach
@@ -61,5 +61,32 @@ public class book_manager_test {
         assertEquals(2, loaded.size());
         assertEquals("Book1", loaded.get(0).getTitle());
         assertEquals("Book2", loaded.get(1).getTitle());
+    }
+
+
+    @Test
+    public void deletingTest(){
+            Book book1 = factory.createBook("Test", "123-456", "Author", 100,2000, Genre.HORROR);
+            Book book2 = factory.createBook("Test1", "123-456-789", "Author", 100,2000, Genre.ADVENTURE);
+            bookmanager.saveBook(book2);
+            bookmanager.saveBook( book1);
+
+            List<Book> beforeDelete = bookmanager.loadingBooks();
+            assertEquals(2, beforeDelete.size());
+
+            bookmanager.deletingBook("123-456");
+
+            List<Book> afterDelete = bookmanager.loadingBooks();
+            assertEquals(1, afterDelete.size());
+            assertEquals("123-456-789", afterDelete.get(0).getISBN());
+    }
+
+    public void deletingNonExistingTest(){
+        Book book = factory.createBook("Book", "333", "Author", 100, 2020, Genre.ROMANCE);
+
+        bookmanager.deletingBook("000");
+        List<Book> remaingBooks = bookmanager.loadingBooks();
+        assertEquals(1, remaingBooks.size());
+        assertEquals("333", remaingBooks.get(0).getISBN());
     }
 }

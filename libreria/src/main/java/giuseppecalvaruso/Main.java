@@ -14,8 +14,7 @@ import giuseppecalvaruso.menu.Mainmenu;
 public class Main {
 
     private static final Logger logger = Logger.getLogger(Main.class.getName());
-    
-    public static void main(String[] args) {
+        public static void main(String[] args) {
         Scanner scannermode = new Scanner(System.in);
 
         System.out.println("Choose the mode:");
@@ -35,7 +34,7 @@ public class Main {
                     int parsedUserChoiche = Integer.parseInt(userChoice);
                 
 
-                    if(parsedUserChoiche<1 || parsedUserChoiche>8){
+                    if(parsedUserChoiche<1 || parsedUserChoiche>9){
                         System.out.println("Incorrect choice, choose between 1 and 8");
                         logger.log(Level.WARNING,"Out of range choice"+ parsedUserChoiche);
                         continue;
@@ -81,6 +80,10 @@ public class Main {
                         case SORT_BOOK:
                             msg = Exception_Shield.thePolice(()->facade.sortingBooks(), logger, "Trying to sort a book");
                             break;    
+
+                        case DELETE_BOOK:
+                           msg = Exception_Shield.thePolice(()->facade.deletingBook(), logger, "trying to delete a book");
+                           break;
                     }
                     
                     if(msg!= null){

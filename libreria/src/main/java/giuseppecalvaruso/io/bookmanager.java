@@ -107,5 +107,41 @@ public static List<Book> loadingBooks(){
 
     }
 
+    /**
+     * This is a method we use when we have to remove a book. 
+     * The book has to be removed cause we inserted a wrong one or cause is not more avaiable(maybe they lost it or it has been sold)
+     * @param wrongIsbn ISBN to delete
+     */
+    public static void deletingBook(String wrongIsbn){
+
+        Exception_Shield.thePolice(()->{
+            List<Book> updatingBooks = loadingBooks();
+            boolean removed = updatingBooks.removeIf(book->book.getISBN().equalsIgnoreCase(wrongIsbn));
+
+            try (PrintWriter writer = new PrintWriter(new FileWriter("booksdatabase.txt",false))){
+                for(Book book: updatingBooks){
+                    String  infoBook = String.format("Title: %s | Author: %s | ISBN: %s | Price: %d  | Year: %d | Genre: %s",
+                            book.getTitle(),
+                            book.getAuthor(),
+                            book.getISBN(),
+                            book.getPrice(),
+                            book.getPublicationYear(),
+                            book.getGenre() == null ? "OTHER" : book.getGenre().name());
+                    writer.println(infoBook);
+
+                }
+            } catch(IOException exception){
+                logger.severe("Error deleting book" + exception.getMessage());
+            }
+            if (removed){
+
+                logger.info("Book removed succesfully");
+           
+            }else{
+                logger.warning("No book found with ISBN provided");
+            }
+        }, logger,"Deleting book");
+    }
+
 
 }

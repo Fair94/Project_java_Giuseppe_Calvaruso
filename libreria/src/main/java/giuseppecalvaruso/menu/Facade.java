@@ -322,6 +322,22 @@ public class Facade {
         
       }
 
+      @MenuOption(label = "delete a book", index= 9)
+
+      public void deletingBook(){
+        System.out.print("Insert the ISBN to delete ");
+        String isbn = input.nextLine().trim();
+
+        if(isbn.isEmpty()){
+            System.out.println("Invalid ISBN, try again");
+            logger.warning("Tried to delete without ISBN");
+
+        }
+
+        bookmanager.deletingBook(isbn);
+
+      }
+
        
    
 
