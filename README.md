@@ -165,17 +165,27 @@ CONCRETE OBSERVER:"ObserverLogger.java","StatusObserver.java" implements the Obs
 
 ![Observer Pattern](libreria/src/main/diagrams/OBSERVER_PATTERN.png)  
 
-
-#CUSTOM ANNOTATIONS 
+OPTIONAL TECHNOLOGIES  
+CUSTOM ANNOTATIONS   
 I've used this optional feature to divide the declarative logic from the procedural logic. 
-Using custom annotations is important in order to adding functionality avoiding modifying code  
-#MOCKITO
+Using custom annotations is important in order to adding functionality avoiding modifying code    
+MOCKITO  
 While i was working with junit test, I've introduced Mockito test. 
 Mockito permits to isolate soome functionality of the app from third party dependencies and check eventually excepted or unexcepted behaviors
 
-#STREAM API AND LAMBDAS  
+STREAM API AND LAMBDAS    
 I have not fully integrated the streamapi, but i've used lambdas.
-Lambdas techonologies permits to reduce the verbosity of java, permits to apply filter logic to the apps and simplify the code avoiding anonymous class.  
+Lambdas techonologies permits to reduce the verbosity of java, permits to apply filter logic to the apps and simplify the code avoiding anonymous class.
+
+CUSTOM ANNOTATIONS  
+In my apps I used custom annotations. Custom annotation permits me to add metadata to method or classes in order to build dinamycally the app.  
+
+MOCKITO  
+Alongside Junit I've used Mockito. 
+Mockito permits to "mock" "situation"of use of the app. I've used it where possible  
+
+JAVA SWING  
+I was thinking to add a gui interface to the app . This permits an easy use of the app. I cannot complete it for lack of time and cause I need to link every "backend " functionality to the gui. There's only an example of the gui
 
 #LIMITATION AND FUTURE WORK  
 There are a lot of things I can do on this app. 
@@ -208,77 +218,73 @@ I can add a login features with hardcoded credentials. I can create two user: ad
 3) Right Click on mouse: run Main  
 4) Use app with CLI (Command Line Interface)  
 
-#KNOWN LIMITATIONS AND FUTURE WORK  
-Known limits of the apps are surely the fact the rented/not rented works on running app. 
-Future works include modifying permanently this field in the mocked database.
-Future works includes recognizing an external pheripheral such a barcode reader, facilitating reading and writing information about book.
-In the future, the app could introduce a customer management, where every customer has it's own ID. With the ID, the app prints the info, how many books has rented and how many books could the customer rent.
-The books have its own price. 
-The app could integrate a sort of payment management, introducing payment via cards, paypal, credit and so on. 
-The app was not designed solely for books, but is extendable for any product tha has a barcode. 
-For example, if we have to run a grocery shops, we could use the genres of the books as foodstuffs (we have of course to change some names)
+
 
 #TEST SUITE  
 The project include a folder test with junit and mockito test
 The test classes are located in:  
 `src/test/java/giuseppecalvaruso/`  
+During my test, I thinked about different scenario of use of the app and where possible I have used mockito to mock this scenario. 
+
 - `book_factory_mockito_test.java`  
-   Uses Mockito to simulate the behavior of a `book_factory` and verify that the `createBook()` method is called with the expected parameters and returns the correct mocked object.  
+   Uses Mockito to simulate the creating of a book using book factory and add Book class
 
 - `book_manager_test.java`  
-   Integration test for reading and writing books to the mock database (`bookdatabase.txt`).  
-   Verifies correct persistence of single and multiple books, and proper handling of an empty file.  
+   Verifying the persistence of the mocked database
+
 
 - `ExceptionShieldMockitoTest.java`  
-   Unit tests for the `Exception_Shield` class using Mockito.  
-   Simulates both expected (`InputError`) and unexpected (`RuntimeException`) errors to verify that:
-   - The correct logger method is called (`warning` or `severe`)
-   - A safe message is returned to the user  
+  Testing Exception_Shielding pattern using mockito
 
 - `ExceptionShieldTest.java`  
-   Unit tests for the `Exception_Shield` logic using a real `Logger`.  
-   Verifies the shielding behavior in three scenarios: expected error (`InputError`), unexpected error (`RuntimeException`), and no error at all.  
+   Testing Exception_Shielding with Junit using three different scenario
 
 - `FacadeTest.java`  
-   Tests the `Facade` class, simulating user input via a `Scanner`.  
-   Verifies that invalid inputs (empty title, negative price) trigger `InputError`, and that valid input is accepted without exceptions.  
+  Testing Facade using different input through scanner.  
 
 - `LibraryBookIteratorMockitoTest.java`  
-   Tests the `LibraryBookIterator` class using mocked `List` and `Iterator` objects.  
-   Verifies correct iteration behavior, including edge case when no elements are left.  
+   Testing iterator using a mocked library 
+
 - `LibraryBookIteratorTest.java`  
-   Unit tests for the real behavior of `LibraryBookIterator`.  
-   Verifies iteration over a real list of books, as well as edge cases such as an empty list or null input.  
+  Testing iterator using a real library 
 
 - `LibraryTest.java`  
-   Tests the `Library` class as a concrete aggregate for the Iterator Pattern.  
-   Verifies that a valid iterator is returned and handles the case of an empty library correctly.  
+   Verifying the correct creation of the iterator   
 
 - `MainMenuTest.java`  
-   Unit tests for the `Mainmenu` enum.  
-   Verifies that valid numeric inputs are correctly mapped to menu options and that invalid inputs return `null` as expected.  
+   Verifying the correctness of the enum 
 
 - `print_for_genre_test.java`  
-   Tests the `printForGenre<T>` utility class.  
-   Verifies that the `print()` method handles null, empty, and valid lists without throwing exceptions.  
+   Testing printforgenre through different scenario   
 
 - `rentedBooktest.java`  
-   Unit tests for the `rentedBook` class, which acts as a leaf in the Composite Pattern.  
-   Verifies that the class correctly throws an exception when constructed with `null`, and that the `print()` method works as expected for valid books.
-- `rentedBooktest.java`  
-   Unit tests for the `rentedBook` class, which acts as a leaf in the Composite Pattern.  
-   Verifies that the class correctly throws an exception when constructed with `null`, and that the `print()` method works as expected for valid books.
+   Testing the leaf 
+- `testing_sort.java`
+   Unit test for sorting functionality.
+   Verifying sorting functionality
 
 - `rentedLibraryTest.java`  
-   Unit tests for the `rentedLibrary` class, which acts as a composite in the Composite Pattern.  
-   Verifies correct handling of book addition/removal, proper response to null inputs, and the behavior of the `isEmpty()` method.  
-- `StandardBookFactoryTest.java`  
-   Extensive unit tests for the `standard_book_factory` class, validating the correct creation of `Book` objects.  
-   Tests both successful cases and all major input validation rules: empty fields, negative values, and null genre handling.  
-- `SubBookTest.java`  
-   Parameterized test that verifies `Book` creation for all possible `Genre` enum values.  
-   Ensures that each genre is correctly assigned by the factory.
+  Testing the composite of the composite pattern through different scenario 
 
+- `StandardBookFactoryTest.java`  
+   Validating the creation of the book 
+- `SubBookTest.java`  
+   Verifying that the different book with different genre are created succesfully  
+
+#KNOWN LIMITATIONS AND FUTURE WORK  
+Known limits of the apps are surely the fact the rented/not rented works on running app. 
+Future works include modifying permanently this field in the mocked database.
+Future works includes recognizing an external pheripheral such a barcode reader, facilitating reading and writing information about book.
+In the future, the app could introduce a customer management (There is already a customer class), where every customer has it's own ID. With the ID, the app prints the info, how many books has rented and how many books could the customer rent.
+The books have its own price. 
+The app could integrate a sort of payment management, introducing payment via cards, paypal, credit and so on. 
+The app was not designed solely for books, but is extendable for any product tha has a barcode. 
+For example, if we have to run a grocery shops, we could use the genres of the books as foodstuffs (we have of course to change some names).
+Many other improvements are surely adding a gui (I was working on it with Java swings).
+I can also use other optional pattern or technologies in order to add more functionality to the app. 
+For example, i can add full stream api in order to write less code for complex functionality
+I can use multithreading with the gui. While the app read for example the book, I can create a thread for that, so swing do not block.
+I've already used custom annotations. I can upgrade it with reflection. With reflection I can reduce the boilerplate code . For example I can avoid writing the switch. With the annotations the code generate the menu automatically.
 
 
 
