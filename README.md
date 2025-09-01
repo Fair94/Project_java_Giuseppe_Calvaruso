@@ -152,7 +152,19 @@ DYNAMIC SWITCHING:Through user choice, the app change the algorithm runtime.
 
 ![Strategy Pattern](libreria/src/main/diagrams/STRATEGY_PATTERN.png)  
 
--OBSERVER-
+-OBSERVER-  
+I've used the observer, in order to notify the user when a book is rented or returned.  
+SUBJECT: "LibrarySubject.java" takes the list of observer and sent notification.  
+
+CONCRETE SUBJECT:"LibraryEventHandler.java" take care of the state, mantain the observer and send notify. 
+
+OBSERVER INTERFACE:"LibraryObserver.java" has the update method.  
+
+CONCRETE OBSERVER:"ObserverLogger.java","StatusObserver.java" implements the Observer Interface and update in the log and the user.
+
+
+![Observer Pattern](libreria/src/main/diagrams/OBSERVER_PATTERN.png)  
+
 
 #CUSTOM ANNOTATIONS 
 I've used this optional feature to divide the declarative logic from the procedural logic. 
