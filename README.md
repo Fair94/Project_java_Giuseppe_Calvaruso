@@ -51,7 +51,12 @@ CONCRETE PRODUCT: "AdventureBook.java" or other types of book,  rapresents the s
 
 CONCRETE CREATOR: "standard_book_factory.java" rapresents the real logic to create and validate any concrete product. 
 
-![Factory Pattern](diagrams/Factory_Pattern.png)  
+
+I've enhanced the pattern adding an abstract book class that is extended by sub genre.     
+
+I' ve created an enum genre, in order to have a list of book's genre.  
+
+![Factory Pattern](libreria/src/main/diagrams/Factory_Pattern.png) 
 
 -COMPOSITE PATTERN-  
 I've introduced the composite pattern to manage the library in 2 distinct section: rented and not rented.  
@@ -63,7 +68,7 @@ LEAF :"rentedBook.java" represent single book. Implements COMPONENT to print the
 
 COMPOSITE: "rentedLibrary.java" store a list of COMPONENT. It can add book and print the list.  
 
-![Composite Pattern](diagrams/COMPOSITE_PATTERN.png)  
+![Composite Pattern](libreria/src/main/diagrams/COMPOSITE_PATTERN.png)  
 
 -ITERATOR PATTERN-  
 I've used the iterator pattern to hide the internal status of my app.
@@ -77,7 +82,7 @@ AGGREGATE: "BooksCollection.java". Has a list of the book and apply to it The CO
 
 CONCRETE AGGREGATE: "Library.java". Implements AGGREGATE and gave an iterator to the list. 
 
-![Iterator Pattern](diagrams/ITERATOR_PATTERN.png)  
+![Iterator Pattern](libreria/src/main/diagrams/ITERATOR_PATTERN.png)  
 -EXCEPTION SHIELDING-  
 
 With Exception shielding I'm protecting the system/app from leak. I'm protecting internal stake and hiding it to the user and external client.
@@ -88,7 +93,8 @@ CLIENT: "Main.java", "Facade.java" and many other files interact with user.
 SERVICE:"standard_book_factory.java", "bookmanager.java" and many other file can generate exception
 
 EXCEPTION SHIELDING HANDLER: "Facade.java" and many other files catch this exception and shows only logger info.  
-![Excheption Shielding Pattern](diagrams/EXCEPTION_SHIELDING_PATTERN.png)  
+![Excheption Shielding Pattern](libreria/src/main/diagrams/EXCEPTION_SHIELDING_PATTERN.png)  
+
 
 
 #TECHNOLOGIES  
@@ -107,18 +113,19 @@ This permits me to read and write from a file
 
 -LOGGING-  
 Logging was used to take track of internal state or event.
-It's used to grant better messages to evenutally new developer.
+It's used to grant better messages to evenutally new developer (also for me.... I've already forgot what I've writed. Now, only god know my code)
 
 -JUnit Testing-  
 JUnit was used to create automatized test. It was used to manage eventually exception  
 
-#LIMITATION AND FUTURE WORK  
-There are a lot of things I can do on this app. 
-First I can integrate a payment system to buy/sell book from/for user.   
-I can add a login features with hardcoded credentials. I can create two user: admin and normal user with different operation.  
+
 
 
 #OPTIONAL ADVANCED FEATURES  
+
+-PATTERN-  
+
+
 -FACADE-  
 I emplemented FACADE PATTERN because I was going crazy with the functionality of the app. 
 With FACADE I create a menu and for every choice there was a subsystem associated (the diagram is not exausistive),
@@ -126,10 +133,27 @@ Generally the FACADE  gave a simple interface to the user and do not expose inte
 
 FACADE : "Facade.java" gave to the Main simple method 
 
-SUBSYSTEM: The various subsystem gave function to my app 
+SUBSYSTEM: The various subsystem gave function to my app  
 
 
-![Facade Pattern](diagrams/FACADE_PATTERN.png)  
+
+
+![Facade Pattern](libreria/src/main/diagrams/FACADE_PATTERN.png)  
+-STRATEGY-  
+I've used strategy pattern to createt a list of sorting algorithm . This algorithm, following the Strategy Patter, could be interchanged runtime  
+
+STRATEGY INTERFACE: "SortingStrategy.Java" : common method for all strategy  
+
+CONCRETE STRATEGIES:"TitleSorting.Java", "AuthorSorting.java","PriceSorting.java","YearSorting.java". Every method sort books in different way.  
+
+CONTEXT CLASS:"SortingContext.java": changing algorithm following user's choice.  
+
+DYNAMIC SWITCHING:Through user choice, the app change the algorithm runtime.  
+
+![Strategy Pattern](libreria/src/main/diagrams/STRATEGY_PATTERN.png)  
+
+-OBSERVER-
+
 #CUSTOM ANNOTATIONS 
 I've used this optional feature to divide the declarative logic from the procedural logic. 
 Using custom annotations is important in order to adding functionality avoiding modifying code  
@@ -139,7 +163,12 @@ Mockito permits to isolate soome functionality of the app from third party depen
 
 #STREAM API AND LAMBDAS  
 I have not fully integrated the streamapi, but i've used lambdas.
-Lambdas techonologies permits to reduce the verbosity of java, permits to apply filter logic to the apps and simplify the code avoiding anonymous class.
+Lambdas techonologies permits to reduce the verbosity of java, permits to apply filter logic to the apps and simplify the code avoiding anonymous class.  
+
+#LIMITATION AND FUTURE WORK  
+There are a lot of things I can do on this app. 
+First I can integrate a payment system to buy/sell book from/for user.   
+I can add a login features with hardcoded credentials. I can create two user: admin and normal user with different operation.  
 
 
 #SETUP AND EXECUTION INSTRUCTIONS

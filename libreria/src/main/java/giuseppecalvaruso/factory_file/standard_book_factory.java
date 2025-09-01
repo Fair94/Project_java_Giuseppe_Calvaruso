@@ -2,7 +2,6 @@ package giuseppecalvaruso.factory_file;
 
 import java.util.logging.Logger;
 
-import giuseppecalvaruso.domain.Genre;
 import giuseppecalvaruso.exception.InputError;
 /**This is the concrete creator for the factory pattern */
 

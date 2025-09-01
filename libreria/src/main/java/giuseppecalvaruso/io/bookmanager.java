@@ -9,10 +9,11 @@ import java.util.Scanner;
 import java.util.logging.Logger;
 import java.io.File;
 import java.io.FileNotFoundException;
-import giuseppecalvaruso.domain.Genre;
+
 import giuseppecalvaruso.exception.Exception_Shield;
 import giuseppecalvaruso.factory_file.AdventureBook;
 import giuseppecalvaruso.factory_file.Book;
+import giuseppecalvaruso.factory_file.Genre;
 import giuseppecalvaruso.factory_file.book_factory;
 import giuseppecalvaruso.factory_file.standard_book_factory;
 

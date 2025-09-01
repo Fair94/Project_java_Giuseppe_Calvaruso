@@ -1,7 +1,5 @@
 package giuseppecalvaruso.factory_file;
 
-import giuseppecalvaruso.domain.Genre;
-
 /**
  * This is the creator of the factory pattern
  */

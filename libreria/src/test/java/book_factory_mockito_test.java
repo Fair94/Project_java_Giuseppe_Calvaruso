@@ -6,8 +6,8 @@ import static org.mockito.Mockito.when;
 
 import org.junit.jupiter.api.Test;
 
-import giuseppecalvaruso.domain.Genre;
 import giuseppecalvaruso.factory_file.Book;
+import giuseppecalvaruso.factory_file.Genre;
 import giuseppecalvaruso.factory_file.book_factory;
 
 public class book_factory_mockito_test {
