@@ -51,7 +51,7 @@ CONCRETE PRODUCT: "AdventureBook.java" or other types of book,  rapresents the s
 
 CONCRETE CREATOR: "standard_book_factory.java" rapresents the real logic to create and validate any concrete product. 
 
-![Factory Pattern](diagrams/Factory_Pattern.png)  
+![Factory Pattern](libreria/src/main/diagrams/FACTORY_PATTERN.png)  
 
 -COMPOSITE PATTERN-  
 I've introduced the composite pattern to manage the library in 2 distinct section: rented and not rented.  
