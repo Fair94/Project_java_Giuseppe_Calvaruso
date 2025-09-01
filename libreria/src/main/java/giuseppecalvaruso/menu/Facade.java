@@ -8,9 +8,9 @@ import java.util.logging.Logger;
 import annotations.MenuOption;
 import giuseppecalvaruso.composite.rentedBook;
 import giuseppecalvaruso.composite.rentedLibrary;
-import giuseppecalvaruso.domain.Book;
 import giuseppecalvaruso.domain.Genre;
 import giuseppecalvaruso.exception.InputError;
+import giuseppecalvaruso.factory_file.Book;
 import giuseppecalvaruso.factory_file.book_factory;
 import giuseppecalvaruso.factory_file.standard_book_factory;
 import giuseppecalvaruso.io.bookmanager;
@@ -78,7 +78,10 @@ public class Facade {
                 }
 
                 int price,publicationYear;
-
+                if (sprice.contains(".")||sprice.contains(",")){
+                    logger.warning("Price with decimal not allowed in test mode");
+                    throw new InputError("Price must be without decimal");
+                }
                 try{
                     price = Integer.parseInt(sprice);
                     publicationYear = Integer.parseInt(year);
@@ -108,7 +111,7 @@ public class Facade {
 
                 Book book = factory.createBook(title, ISBN, author, price,publicationYear,genre);
                 System.out.println("Book created succesfully");
-                System.out.println("Title: " + book.getTitle() + "ISBN: " + book.getISBN() + "Author: " + book.getAuthor() + "Price: " + book.getPrice() + "Publication Year: " + book.getPublicationYear());
+                System.out.println("Title: " + book.getTitle() + " ISBN: " + book.getISBN() + " Author: " + book.getAuthor() + " Price: " + book.getPrice() + " Publication Year: " + book.getPublicationYear());
                 logger.info("The book was created succesfully");
                 bookmanager.saveBook(book);
 

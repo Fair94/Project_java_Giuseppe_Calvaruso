@@ -2,7 +2,7 @@ package giuseppecalvaruso.composite;
 
 import java.util.logging.Logger;
 
-import giuseppecalvaruso.domain.Book;
+import giuseppecalvaruso.factory_file.Book;
 
 /**Leaf elements of composite pattern
  * Rapresents a single book in a rentedlibrary

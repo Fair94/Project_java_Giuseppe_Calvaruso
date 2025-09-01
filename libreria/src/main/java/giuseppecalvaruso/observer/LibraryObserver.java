@@ -1,6 +1,6 @@
 package giuseppecalvaruso.observer;
 
-import giuseppecalvaruso.domain.Book;
+import giuseppecalvaruso.factory_file.Book;
 
 public interface LibraryObserver {
     void update(String eventType,Book book);

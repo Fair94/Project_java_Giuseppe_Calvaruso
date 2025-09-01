@@ -1,6 +1,5 @@
 package giuseppecalvaruso.factory_file;
 
-import giuseppecalvaruso.domain.Book;
 import giuseppecalvaruso.domain.Genre;
 
 /**

@@ -2,15 +2,7 @@ package giuseppecalvaruso.factory_file;
 
 import java.util.logging.Logger;
 
-import giuseppecalvaruso.domain.AdventureBook;
-import giuseppecalvaruso.domain.Book;
-import giuseppecalvaruso.domain.FantasyBook;
 import giuseppecalvaruso.domain.Genre;
-import giuseppecalvaruso.domain.HistoryBook;
-import giuseppecalvaruso.domain.HorrorBook;
-import giuseppecalvaruso.domain.OtherBook;
-import giuseppecalvaruso.domain.RomanceBook;
-import giuseppecalvaruso.domain.SciFiBook;
 import giuseppecalvaruso.exception.InputError;
 /**This is the concrete creator for the factory pattern */
 

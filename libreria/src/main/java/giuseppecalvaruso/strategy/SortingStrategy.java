@@ -3,7 +3,7 @@ package giuseppecalvaruso.strategy;
 import java.util.List;
 
 import annotations.notEmpty;
-import giuseppecalvaruso.domain.Book;
+import giuseppecalvaruso.factory_file.Book;
 
 /**
  * Sorting use to sort books

@@ -1,9 +1,10 @@
-package giuseppecalvaruso.domain;
+package giuseppecalvaruso.factory_file;
 
 import annotations.ISBN;
 import annotations.Positive;
 import annotations.Rented;
 import annotations.notEmpty;
+import giuseppecalvaruso.domain.Genre;
 
 /**
  * This is the Product element of factory pattern

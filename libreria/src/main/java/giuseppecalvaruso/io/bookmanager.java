@@ -11,10 +11,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import giuseppecalvaruso.domain.Genre;
 import giuseppecalvaruso.exception.Exception_Shield;
+import giuseppecalvaruso.factory_file.AdventureBook;
+import giuseppecalvaruso.factory_file.Book;
 import giuseppecalvaruso.factory_file.book_factory;
 import giuseppecalvaruso.factory_file.standard_book_factory;
-import giuseppecalvaruso.domain.AdventureBook;
-import giuseppecalvaruso.domain.Book;
 
 /**This is the class file I'm using to mockup a book database.
  * Known Limitation: rented works only runtime. The rent status is resetted . 

@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import annotations.notEmpty;
-import giuseppecalvaruso.domain.Book;
+import giuseppecalvaruso.factory_file.Book;
 
 @Strategy("Price")
 public class PriceSorting implements SortingStrategy {

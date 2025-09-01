@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Logger;
 
-import giuseppecalvaruso.domain.Book;
+import giuseppecalvaruso.factory_file.Book;
 import giuseppecalvaruso.io.bookmanager;
 
 /**

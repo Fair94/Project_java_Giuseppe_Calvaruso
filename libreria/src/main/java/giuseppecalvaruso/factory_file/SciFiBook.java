@@ -1,4 +1,6 @@
-package giuseppecalvaruso.domain;
+package giuseppecalvaruso.factory_file;
+
+import giuseppecalvaruso.domain.Genre;
 
 public class SciFiBook extends AbstractBook {
      public SciFiBook(String title, String ISBN, String author, int price, int publicationYear,boolean rented, Genre genre){

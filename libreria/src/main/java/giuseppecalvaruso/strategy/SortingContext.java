@@ -2,7 +2,8 @@ package giuseppecalvaruso.strategy;
 
 import java.util.List;
 import java.util.logging.Logger;
-import giuseppecalvaruso.domain.Book;
+
+import giuseppecalvaruso.factory_file.Book;
 
 /**
  * Allowing changing sorting strategy runtime

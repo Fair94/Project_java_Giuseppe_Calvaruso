@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
 import giuseppecalvaruso.composite.rentedBook;
-import giuseppecalvaruso.domain.Book;
 import giuseppecalvaruso.domain.Genre;
+import giuseppecalvaruso.factory_file.Book;
 import giuseppecalvaruso.factory_file.book_factory;
 import giuseppecalvaruso.factory_file.standard_book_factory;
 

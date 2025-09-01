@@ -1,6 +1,6 @@
 package giuseppecalvaruso.iterator;
 
-import giuseppecalvaruso.domain.Book;
+import giuseppecalvaruso.factory_file.Book;
 
 
 /**

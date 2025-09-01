@@ -10,8 +10,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import giuseppecalvaruso.domain.Book;
 import giuseppecalvaruso.domain.Genre;
+import giuseppecalvaruso.factory_file.Book;
 import giuseppecalvaruso.factory_file.book_factory;
 import giuseppecalvaruso.factory_file.standard_book_factory;
 import giuseppecalvaruso.io.bookmanager;
@@ -83,6 +83,7 @@ public class book_manager_test {
 
     public void deletingNonExistingTest(){
         Book book = factory.createBook("Book", "333", "Author", 100, 2020, Genre.ROMANCE);
+        bookmanager.saveBook(book);
 
         bookmanager.deletingBook("000");
         List<Book> remaingBooks = bookmanager.loadingBooks();

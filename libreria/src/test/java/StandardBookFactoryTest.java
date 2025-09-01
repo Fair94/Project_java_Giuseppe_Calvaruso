@@ -1,6 +1,6 @@
-import giuseppecalvaruso.domain.Book;
 import giuseppecalvaruso.domain.Genre;
 import giuseppecalvaruso.exception.InputError;
+import giuseppecalvaruso.factory_file.Book;
 import giuseppecalvaruso.factory_file.book_factory;
 import giuseppecalvaruso.factory_file.standard_book_factory;
 

@@ -12,7 +12,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import giuseppecalvaruso.domain.Book;
+import giuseppecalvaruso.factory_file.Book;
 import giuseppecalvaruso.iterator.BooksIterator;
 import giuseppecalvaruso.iterator.LibraryBookIterator;
 

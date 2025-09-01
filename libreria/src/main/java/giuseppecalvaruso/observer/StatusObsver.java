@@ -1,6 +1,6 @@
 package giuseppecalvaruso.observer;
 
-import giuseppecalvaruso.domain.Book;
+import giuseppecalvaruso.factory_file.Book;
 
 public class StatusObsver implements LibraryObserver{
     private int rentedCount = 0;
