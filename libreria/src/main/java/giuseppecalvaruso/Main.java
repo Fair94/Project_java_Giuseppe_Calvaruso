@@ -11,6 +11,7 @@ import giuseppecalvaruso.menu.Mainmenu;
 
 
 
+
 public class Main {
 
     private static final Logger logger = Logger.getLogger(Main.class.getName());
@@ -19,7 +20,7 @@ public class Main {
 
         System.out.println("Choose the mode:");
         System.out.println("1)Console");
-        System.out.println("2)GUI(This mode is in alpha mode, it could broke the app)");
+        System.out.println("2)Info");
         String mainchoice = scannermode.nextLine().trim();
         if(mainchoice.equals("1")){
         try (Scanner input = new Scanner(System.in)) {

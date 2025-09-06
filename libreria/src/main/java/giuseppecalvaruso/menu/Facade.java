@@ -84,16 +84,19 @@ public class Facade {
                 }
                 try{
                     price = Integer.parseInt(sprice);
+                     if (price <0){
+                    logger.info("negative number"+ price);
+                    throw new InputError("Price cannot be less than 0");
+                
+                    
+                }
                     publicationYear = Integer.parseInt(year);
                 } catch(NumberFormatException error){
                     logger.warning("Invalid format for price/publicationYear");
                     throw new InputError("Invalid number for price or publication year");
                 }
 
-                if (price <0){
-                    logger.info("negative number"+ price);
-                    throw new InputError("Price cannot be less than 0");
-                }
+               
 
                 if (publicationYear< 1400 || publicationYear> 2100){
                     logger.warning("Out of range year"+ publicationYear);
